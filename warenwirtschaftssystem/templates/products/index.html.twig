@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products {% endblock title %}
+
+
+{% block body %}
+    <h1>Produkte</h1>
+    {% if products %}
+        <a class="btn btn-primary mt-2 mb-2" href="{{ path('product_new') }}">Produkt hinzufügen</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Produkt</th>
+                <th>Anzahl</th>
+                <th>In Lieferung</th>
+                <th>Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td></td>
+                    <td><a href="/products/{{ product.id }}" class="btn btn-dark btn-sm">Mehr</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p >Sie haben noch kein Produkt, fügen Sie ihr erstes Produkt hinzu.</p>
+        <a href="/products/new">
+            <button class="btn btn-primary">Hinzufügen</button>
+        </a>
+    {% endif %}
+{% endblock body %}
